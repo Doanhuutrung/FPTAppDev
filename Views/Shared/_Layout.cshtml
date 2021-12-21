@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using FPTAppDev.Utils
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,13 +18,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("FLS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole(Role.Admin))
+                        {
+                        }
+                        else if (User.IsInRole(Role.Staff))
+                        {
+
+                        }
+                        else if (User.IsInRole(Role.Trainer))
+                        {
+                        }
+                        else if (User.IsInRole(Role.Trainee))
+                        {
+                        }
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
