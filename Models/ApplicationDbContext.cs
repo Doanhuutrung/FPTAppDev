@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace FPTAppDev.Models
 {
@@ -8,6 +9,8 @@ namespace FPTAppDev.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+        public DbSet<Staff> StaffDbset { get; set; }
 
         public static ApplicationDbContext Create()
         {

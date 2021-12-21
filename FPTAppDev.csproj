@@ -178,14 +178,20 @@
     <Compile Include="Migrations\202112210145432_FistMigration.Designer.cs">
       <DependentUpon>202112210145432_FistMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112210353307_CreateTableStaffs.cs" />
+    <Compile Include="Migrations\202112210353307_CreateTableStaffs.Designer.cs">
+      <DependentUpon>202112210353307_CreateTableStaffs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Role.cs" />
+    <Compile Include="ViewModel\CreateStaffViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -245,6 +251,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Admin\StaffList.cshtml" />
     <Content Include="Views\Admin\TrainerList.cshtml" />
+    <Content Include="Views\Admin\CreateStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -265,6 +272,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202112210145432_FistMigration.resx">
       <DependentUpon>202112210145432_FistMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112210353307_CreateTableStaffs.resx">
+      <DependentUpon>202112210353307_CreateTableStaffs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
