@@ -1,7 +1,43 @@
-﻿
+﻿@model IEnumerable<FPTAppDev.Models.Trainer>
+
 @{
     ViewBag.Title = "TrainerList";
 }
 
-<h2>TrainerList</h2>
+<h2>Trainer</h2>
 
+<div class="form-group">
+    @Html.ActionLink("Create a new Trainer", "CreateTrainer", "Admin", new { @class = "btn btn-primary" })
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Specialty</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.User.Email</td>
+            <td>@item.Name</td>
+            <td>@item.Age</td>
+            <td>@item.Address</td>
+            <td>@item.Specialty</td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteTrainer", "Admin", new { id = @item.TrainerId },
+                    new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+                @Html.ActionLink("Edit", "EditTrainer", "Admin", new { id = @item.TrainerId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Change Password", "TrainerChangePassword", "Admin", new { id = @item.TrainerId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+        }
+
+    </tbody>
+</table>

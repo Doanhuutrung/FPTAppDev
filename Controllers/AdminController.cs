@@ -181,11 +181,123 @@ namespace FPTAppDev.Controllers
             return RedirectToAction("StaffList", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
 
-
         //Trainer List
         public ActionResult TrainerList()
         {
+            var Trainer = _context.TrainerDbset.Include(t => t.User).ToList();
+            return View(Trainer);
+        }
+
+        //GET: CreateTrainer
+        [HttpGet]
+        public ActionResult CreateTrainer()
+        {
             return View();
+        }
+        //POST: CreateTrainer
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateTrainer(CreateTrainerViewModel viewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = viewModel.Email, Email = viewModel.Email };
+                var result = await UserManager.CreateAsync(user, viewModel.Password);
+                var TrainerId = user.Id;
+                var newTrainer = new Trainer()
+                {
+                    TrainerId = TrainerId,
+                    Name = viewModel.Name,
+                    Age = viewModel.Age,
+                    Address = viewModel.Address,
+                    Specialty = viewModel.Specialty
+                };
+                if (result.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(user.Id, Role.Staff);
+                    _context.TrainerDbset.Add(newTrainer);
+                    _context.SaveChanges();
+                    return RedirectToAction("TrainerList", "Admin");
+                }
+                AddErrors(result);
+            }
+
+            return View(viewModel);
+        }
+
+        //GET: DeleteTrainer
+        [HttpGet]
+        public ActionResult DeleteTrainer(string id)
+        {
+            var trainerInDb = _context.Users.SingleOrDefault(t => t.Id == id);
+            var trainerInDbset = _context.TrainerDbset.SingleOrDefault(t => t.TrainerId == id);
+            if (trainerInDb == null || trainerInDbset == null)
+            {
+                return HttpNotFound();
+            }
+            _context.Users.Remove(trainerInDb);
+            _context.TrainerDbset.Remove(trainerInDbset);
+            _context.SaveChanges();
+            return RedirectToAction("TrainerList", "Admin");
+        }
+
+        //GET: EditTrainer
+        [HttpGet]
+        public ActionResult EditTrainer(string id)
+        {
+            var trainerInDb = _context.TrainerDbset.SingleOrDefault(t => t.TrainerId == id);
+            if (trainerInDb == null)
+            {
+                return HttpNotFound();
+            }
+            return View(trainerInDb);
+        }
+        //POST: EditTrainer
+        [HttpPost]
+        public ActionResult EditTrainer(Trainer trainer)
+        {
+            var trainerInDb = _context.TrainerDbset.SingleOrDefault(t => t.TrainerId == trainer.TrainerId);
+            if (trainerInDb == null)
+            {
+                return HttpNotFound();
+            }
+            trainerInDb.Name = trainer.Name;
+            trainerInDb.Age = trainer.Age;
+            trainerInDb.Address = trainer.Address;
+            trainerInDb.Specialty = trainer.Specialty;
+
+            _context.SaveChanges();
+            return RedirectToAction("TrainerList", "Admin");
+        }
+
+        //GET: StaffChangePassword
+        [HttpGet]
+        public ActionResult TrainerChangePassword()
+        {
+            return View();
+        }
+        //POST: StaffChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TrainerChangePassword(ChangePassViewModel model, string id)
+        {
+            var userInDb = _context.Users.SingleOrDefault(i => i.Id == id);
+            if (userInDb == null)
+            {
+                return HttpNotFound();
+            }
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            userId = userInDb.Id;
+
+            if (userId != null)
+            {
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                userManager.RemovePassword(userId);
+                string newPassword = model.NewPassword;
+                userManager.AddPassword(userId, newPassword);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("StaffList", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
 
     }
