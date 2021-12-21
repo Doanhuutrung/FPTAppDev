@@ -1,11 +1,41 @@
-﻿
+﻿@model IEnumerable<FPTAppDev.Models.Staff>
+
 @{
     ViewBag.Title = "StaffList";
 }
 
-<h2>Staff Table</h2>
+<h2>Training Staff</h2>
 
 <div class="form-group">
     @Html.ActionLink("Create a new Staff", "CreateStaff", "Admin", new { @class = "btn btn-primary" })
 </div>
 
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Email</th>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Address</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.User.Email</td>
+                <td>@item.Name</td>
+                <td>@item.Age</td>
+                <td>@item.Address</td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteStaff", "Admin", new { id = @item.StaffId },
+                        new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+                    @Html.ActionLink("Edit", "EditStaff", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Change Password", "StaffChangePassword", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

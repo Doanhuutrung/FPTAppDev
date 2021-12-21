@@ -1,0 +1,32 @@
+﻿@model FPTAppDev.Models.Staff
+
+@{
+    ViewBag.Title = "EditStaff";
+}
+
+<h2>Training Staff Infomation</h2>
+
+@using (Html.BeginForm("EditStaff", "Admin", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.HiddenFor(m => m.StaffId)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(u => u.Name)
+        @Html.EditorFor(u => u.Name, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.Age)
+        @Html.EditorFor(u => u.Age, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(u => u.Address)
+        @Html.EditorFor(u => u.Address, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </div>
+}
