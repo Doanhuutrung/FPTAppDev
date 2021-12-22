@@ -164,5 +164,86 @@ namespace FPTAppDev.Controllers
             }
             return View(Category);
         }
+
+        //GET: CreateCategory
+        [HttpGet]
+        public ActionResult CreateCategory()
+        {
+            return View();
+        }
+        //POST: CreateCategory
+        [HttpPost]
+        public ActionResult CreateCategory(Category category)
+        {
+            var newCategory = new Category()
+            {
+                Name = category.Name,
+                Description = category.Description
+            };
+            try
+            {
+                _context.CategoryDbset.Add(newCategory);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("duplicate", "Team name already existed");
+                return View(category);
+            }
+            
+            return RedirectToAction("CategoryList", "Staff");
+        }
+
+        //GET: DeleteCategory
+        [HttpGet]
+        public ActionResult DeleteCategory(int id)
+        {
+            var categoryInDb = _context.CategoryDbset.SingleOrDefault(t => t.Id == id);
+            if (categoryInDb == null)
+            {
+                return HttpNotFound();
+            }
+            _context.CategoryDbset.Remove(categoryInDb);
+            _context.SaveChanges();
+            //Reseed the identity to 0.
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT (Categories, RESEED, 0)");
+            //Roll the identity forward till it finds the last used number.
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT (Categories, RESEED)");
+            return RedirectToAction("CategoryList", "Staff");
+        }
+
+        //GET: EditCategory
+        [HttpGet]
+        public ActionResult EditCategory(int id)
+        {
+            var categoryInDb = _context.CategoryDbset.SingleOrDefault(t => t.Id == id);
+            if (categoryInDb == null)
+            {
+                return HttpNotFound();
+            }
+            return View(categoryInDb);
+        }
+        //POST: EditCategory
+        [HttpPost]
+        public ActionResult EditCategory(Category category)
+        {
+            var categoryInDb = _context.CategoryDbset.SingleOrDefault(t => t.Id == category.Id);
+            if (categoryInDb == null)
+            {
+                return HttpNotFound();
+            }
+            categoryInDb.Name = category.Name;
+            categoryInDb.Description = category.Description;
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError("duplicate", "Team name already existed");
+                return View(category);
+            }
+            return RedirectToAction("CategoryList", "Staff");
+        }
     }
 }
