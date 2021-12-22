@@ -13,6 +13,7 @@ namespace FPTAppDev.Models
         public DbSet<Staff> StaffDbset { get; set; }
         public DbSet<Trainer> TrainerDbset { get; set; }
         public DbSet<Trainee> TraineeDbset { get; set; }
+        public DbSet<Category> CategoryDbset { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

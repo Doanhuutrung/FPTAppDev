@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FPTAppDev.Models.Category>
+@{
+    ViewBag.Title = "CategoryList";
+}
+
+<h2>Category</h2>
+
+<div class="form-group">
+    @Html.ActionLink("Create a new Category", "CreateTeam", null, new { @class = "btn btn-primary" })
+</div>
+
+@using (Html.BeginForm("CategoryList", "Staff", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by category name" })
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Course Category Name</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteCategory", "Staff", new { id = @item.Id },
+                new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+                @Html.ActionLink("Edit", "EditCategory", "Staff", new { id = @item.Id }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

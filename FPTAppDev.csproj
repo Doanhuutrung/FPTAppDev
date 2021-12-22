@@ -320,10 +320,15 @@
     <Compile Include="Migrations\202112220859004_CreateTableTrainees.Designer.cs">
       <DependentUpon>202112220859004_CreateTableTrainees.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112221050412_CreateTableCategorys.cs" />
+    <Compile Include="Migrations\202112221050412_CreateTableCategorys.Designer.cs">
+      <DependentUpon>202112221050412_CreateTableCategorys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Trainee.cs" />
@@ -403,6 +408,7 @@
     <Content Include="Views\Staff\TraineeList.cshtml" />
     <Content Include="Views\Staff\CreateTrainee.cshtml" />
     <Content Include="Views\Staff\EditTrainee.cshtml" />
+    <Content Include="Views\Staff\CategoryList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -432,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112220859004_CreateTableTrainees.resx">
       <DependentUpon>202112220859004_CreateTableTrainees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112221050412_CreateTableCategorys.resx">
+      <DependentUpon>202112221050412_CreateTableCategorys.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

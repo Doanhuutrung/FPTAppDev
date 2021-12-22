@@ -149,7 +149,20 @@ namespace FPTAppDev.Controllers
             _context.SaveChanges();
             return RedirectToAction("TraineeList", "Staff");
         }
-
-
+        
+        //CategoryList
+        public ActionResult CategoryList(string searchString)
+        {
+            var Category = _context.CategoryDbset
+              .OrderBy(m => m.Id)
+              .ToList();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                Category = Category
+                    .Where(t => t.Name.ToLower().Contains(searchString.ToLower())).
+                    ToList();
+            }
+            return View(Category);
+        }
     }
 }
