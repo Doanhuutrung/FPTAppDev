@@ -18,29 +18,16 @@ namespace FPTAppDev.Controllers
     [Authorize(Roles = Role.Admin)]
     public class AdminController : Controller
     {
-        private ApplicationSignInManager _signInManager;
         private ApplicationDbContext _context;
         private ApplicationUserManager _userManager;
         public AdminController()
         {
             _context = new ApplicationDbContext();
         }
-        public AdminController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public AdminController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
-            SignInManager = signInManager;
             _context = new ApplicationDbContext();
-        }
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
         }
         public ApplicationUserManager UserManager
         {

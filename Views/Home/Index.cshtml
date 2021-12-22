@@ -28,7 +28,22 @@
         if (User.IsInRole(FPTAppDev.Utils.Role.Staff))
         {
             <div class="col-md-4">
-                <h2>Training Staff</h2>
+                <h2>View Trainee</h2>
+                <p>
+                    @Html.ActionLink("View", "TraineeList", "Staff", null, new { @class = "btn btn-primary" })
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h2>View Category</h2>
+                <p>
+                    @Html.ActionLink("View", "CategoryList", "Staff", null, new { @class = "btn btn-primary" })
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h2>View Course</h2>
+                <p>
+                    @Html.ActionLink("View", "CourseList", "Staff", null, new { @class = "btn btn-primary" })
+                </p>
             </div>
         }
 

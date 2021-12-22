@@ -300,6 +300,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -315,18 +316,24 @@
     <Compile Include="Migrations\202112211052297_CreateTabeTrainers.Designer.cs">
       <DependentUpon>202112211052297_CreateTabeTrainers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112220859004_CreateTableTrainees.cs" />
+    <Compile Include="Migrations\202112220859004_CreateTableTrainees.Designer.cs">
+      <DependentUpon>202112220859004_CreateTableTrainees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\Trainee.cs" />
     <Compile Include="Models\Trainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Role.cs" />
     <Compile Include="ViewModel\ChangePassViewModel.cs" />
     <Compile Include="ViewModel\CreateStaffViewModel.cs" />
+    <Compile Include="ViewModel\CreateTraineeViewModel.cs" />
     <Compile Include="ViewModel\CreateTrainerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -393,6 +400,7 @@
     <Content Include="Views\Admin\CreateTrainer.cshtml" />
     <Content Include="Views\Admin\EditTrainer.cshtml" />
     <Content Include="Views\Admin\TrainerChangePassword.cshtml" />
+    <Content Include="Views\Staff\TraineeList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -419,6 +427,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112211052297_CreateTabeTrainers.resx">
       <DependentUpon>202112211052297_CreateTabeTrainers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112220859004_CreateTableTrainees.resx">
+      <DependentUpon>202112220859004_CreateTableTrainees.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
