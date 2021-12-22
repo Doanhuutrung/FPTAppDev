@@ -1,18 +1,17 @@
-﻿@model FPTAppDev.Models.Staff
-
+﻿@model FPTAppDev.Models.Trainee
 @{
-    ViewBag.Title = "EditStaff";
+    ViewBag.Title = "EditTrainee";
 }
 
-<h2>Training Staff Infomation</h2>
+<h2>Trainee Information</h2>
 
-@using (Html.BeginForm("EditStaff", "Admin", FormMethod.Post))
+@using (Html.BeginForm("EditTrainee", "Staff", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.HiddenFor(m => m.StaffId)
+        @Html.HiddenFor(m => m.TraineeId)
     </div>
 
     <div class="form-group">
@@ -24,13 +23,18 @@
         @Html.EditorFor(u => u.Age, new { htmlAttributes = new { @class = "form-control" } })
     </div>
     <div class="form-group">
+        @Html.LabelFor(u => u.BirthDate)
+        @Html.EditorFor(u => u.BirthDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+    </div>
+    <div class="form-group">
         @Html.LabelFor(u => u.Address)
         @Html.EditorFor(u => u.Address, new { htmlAttributes = new { @class = "form-control" } })
     </div>
-
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Edit</button>
+        @Html.LabelFor(u => u.Education)
+        @Html.EditorFor(u => u.Education, new { htmlAttributes = new { @class = "form-control" } })
     </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
 }
 
 @section Scripts {

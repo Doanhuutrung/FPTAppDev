@@ -26,8 +26,7 @@
             <th>Birthday</th>
             <th>Address</th>
             <th>Education</th>
-            <th>Delete</th>
-            <th>Edit</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -37,11 +36,12 @@
                 <td>@item.User.Email</td>
                 <td>@item.Name</td>
                 <td>@item.Age</td>
-                <td>@item.BirthDate</td>
+                <td>@item.BirthDate.ToShortDateString()</td>
                 <td>@item.Address</td>
                 <td>@item.Education</td>
-                <td>@Html.ActionLink("Delete", "DeleteTrainee", "Staff", new { id = @item.TraineeId }, new { @class = "btn btn-danger" })</td>
-                <td>@Html.ActionLink("Edit", "EditTrainee", "Staff", new { id = @item.TraineeId }, new { @class = "btn btn-primary" })</td>
+                <td>@Html.ActionLink("Delete", "DeleteTrainee", "Staff", new { id = @item.TraineeId },
+                    new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+                @Html.ActionLink("Edit", "EditTrainee", "Staff", new { id = @item.TraineeId }, new { @class = "btn btn-primary" })</td>
             </tr>
         }
     </tbody>
