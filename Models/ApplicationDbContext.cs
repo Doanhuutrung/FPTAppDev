@@ -14,6 +14,7 @@ namespace FPTAppDev.Models
         public DbSet<Trainer> TrainerDbset { get; set; }
         public DbSet<Trainee> TraineeDbset { get; set; }
         public DbSet<Category> CategoryDbset { get; set; }
+        public DbSet<Course> CourseDbset { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

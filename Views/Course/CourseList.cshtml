@@ -1,0 +1,43 @@
+﻿@model IEnumerable<FPTAppDev.Models.Course>
+@{
+    ViewBag.Title = "CourseList";
+}
+
+<h2>Course</h2>
+
+<div class="form-group">
+    @Html.ActionLink("Create a new Course", "CreateCourse", null, new { @class = "btn btn-primary" })
+</div>
+
+@using (Html.BeginForm("CourseList", "Course", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by course name" })
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Course Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Category.Name</td>
+                <td>
+                    @Html.ActionLink("Delete", "DeleteCourse", "Course", new { id = @item.Id },
+                new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+                    @Html.ActionLink("Edit", "EditCourse", "Course", new { id = @item.Id }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

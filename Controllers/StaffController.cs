@@ -187,7 +187,7 @@ namespace FPTAppDev.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError("duplicate", "Team name already existed");
+                ModelState.AddModelError("duplicate", "Category name already existed");
                 return View(category);
             }
             
@@ -240,7 +240,7 @@ namespace FPTAppDev.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError("duplicate", "Team name already existed");
+                ModelState.AddModelError("duplicate", "Category name already existed");
                 return View(category);
             }
             return RedirectToAction("CategoryList", "Staff");
