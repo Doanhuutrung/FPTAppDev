@@ -28,11 +28,14 @@
         @foreach (var item in Model)
         {
             <tr>
-
-                @foreach (var trainer in item.Trainers)
-                {
-                    <td>@trainer.Name</td>
-                }
+                <td>
+                    @foreach (var trainer in item.Trainers)
+                    {
+                        <li>
+                            @trainer.Name
+                        </li>
+                    }
+                </td>
                 <td>@item.Course.Name</td>
             </tr>
         }
