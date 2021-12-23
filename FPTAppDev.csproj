@@ -329,6 +329,10 @@
     <Compile Include="Migrations\202112221251257_CreateTableCourses.Designer.cs">
       <DependentUpon>202112221251257_CreateTableCourses.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202112230858349_CreateTableTrainerCourses.cs" />
+    <Compile Include="Migrations\202112230858349_CreateTableTrainerCourses.Designer.cs">
+      <DependentUpon>202112230858349_CreateTableTrainerCourses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -339,6 +343,7 @@
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Trainee.cs" />
     <Compile Include="Models\Trainer.cs" />
+    <Compile Include="Models\TrainerCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Role.cs" />
@@ -347,6 +352,7 @@
     <Compile Include="ViewModel\CreateStaffViewModel.cs" />
     <Compile Include="ViewModel\CreateTraineeViewModel.cs" />
     <Compile Include="ViewModel\CreateTrainerViewModel.cs" />
+    <Compile Include="ViewModel\TrainerCourseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -421,6 +427,9 @@
     <Content Include="Views\Course\CourseList.cshtml" />
     <Content Include="Views\Course\CreateCourse.cshtml" />
     <Content Include="Views\Course\EditCourse.cshtml" />
+    <Content Include="Views\Course\TrainerInCourse.cshtml" />
+    <Content Include="Views\Course\AssignTrainer.cshtml" />
+    <Content Include="Views\Course\RemoveTrainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -456,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202112221251257_CreateTableCourses.resx">
       <DependentUpon>202112221251257_CreateTableCourses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202112230858349_CreateTableTrainerCourses.resx">
+      <DependentUpon>202112230858349_CreateTableTrainerCourses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -7,6 +7,8 @@
 
 <div class="form-group">
     @Html.ActionLink("Create a new Course", "CreateCourse", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("View Trainer", "TrainerInCourse", "Course", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("View Trainee", "TraineeInCourse", "Course", null, new { @class = "btn btn-success" })
 </div>
 
 @using (Html.BeginForm("CourseList", "Course", FormMethod.Get))
@@ -35,7 +37,7 @@
                 <td>
                     @Html.ActionLink("Delete", "DeleteCourse", "Course", new { id = @item.Id },
                 new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
-                    @Html.ActionLink("Edit", "EditCourse", "Course", new { id = @item.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "EditCourse", "Course", new { id = @item.Id }, new { @class = "btn btn-primary" })                    
                 </td>
             </tr>
         }

@@ -129,5 +129,93 @@ namespace FPTAppDev.Controllers
             _context.SaveChanges();
             return RedirectToAction("CourseList", "Course");
         }
+
+        //GET: TrainerIncourse
+        [HttpGet]
+        public ActionResult TrainerInCourse(string searchString)
+        {
+            List<TrainerCourseViewModel> viewModel = _context.TrainerCourseDbset
+                .GroupBy(i => i.Course)
+                .Select(res => new TrainerCourseViewModel
+                {
+                    Course = res.Key,
+                    Trainers = res.Select(u => u.Trainer).ToList()
+                })
+                .ToList();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                viewModel = viewModel
+                    .Where(t => t.Course.Name.ToLower().Contains(searchString.ToLower())).
+                    ToList();
+            }
+            return View(viewModel);
+        }
+
+        //GET: AssignTrainer
+        [HttpGet]
+        public ActionResult AssignTrainer()
+        {
+            var viewModel = new TrainerCourseViewModel
+            {
+                Courses = _context.CourseDbset.ToList(),
+                Trainers = _context.TrainerDbset.ToList()
+            };
+            return View(viewModel);
+        }
+        //POST: AssignTrainer
+        [HttpPost]
+        public ActionResult AssignTrainer(TrainerCourseViewModel viewModel)
+        {
+            var model = new TrainerCourse
+            {
+                CourseId = viewModel.CourseId,
+                TrainerId = viewModel.TrainerId
+            };
+
+            List<TrainerCourse> trainerCourse = _context.TrainerCourseDbset.ToList();
+            bool alreadyExist = trainerCourse.Any(i => i.CourseId == model.CourseId && i.TrainerId == model.TrainerId);
+            if (alreadyExist == true)
+            {
+                return RedirectToAction("TrainerInCourse", "Course");
+            }
+            _context.TrainerCourseDbset.Add(model);
+            _context.SaveChanges();
+            return RedirectToAction("TrainerInCourse", "Course");
+        }
+
+        //GET: RemoveTrainer
+        [HttpGet]
+        public ActionResult RemoveTrainer()
+        {
+            var trainers = _context.TrainerCourseDbset.Select(t => t.Trainer)
+                .Distinct()
+                .ToList();
+            var courses = _context.TrainerCourseDbset.Select(t => t.Course)
+                .Distinct()
+                .ToList();
+
+            var viewModel = new TrainerCourseViewModel
+            {
+                Courses = courses,
+                Trainers = trainers
+            };
+            return View(viewModel);
+        }
+        //POST: RemoveTrainer
+        [HttpPost]
+        public ActionResult RemoveTrainer(TrainerCourseViewModel viewModel)
+        {
+            var trainer = _context.TrainerCourseDbset
+                .SingleOrDefault(t => t.CourseId == viewModel.CourseId && t.TrainerId == viewModel.TrainerId);
+            if (trainer == null)
+            {
+                return RedirectToAction("TrainerInCourse", "Course");
+            }
+
+            _context.TrainerCourseDbset.Remove(trainer);
+            _context.SaveChanges();
+
+            return RedirectToAction("TrainerInCourse", "Course");
+        }
     }
 }

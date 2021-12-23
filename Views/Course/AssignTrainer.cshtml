@@ -1,0 +1,28 @@
+﻿@model FPTAppDev.ViewModel.TrainerCourseViewModel
+@{
+    ViewBag.Title = "AssignTrainer";
+}
+
+<h2>AssignTrainer</h2>
+
+@using (@Html.BeginForm("AssignTrainer", "Course", FormMethod.Post))
+{
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label>Course</label>
+        @Html.DropDownListFor(m => m.CourseId,
+        new SelectList(Model.Courses, "Id", "Name"),
+        new { @class = "form-control" }
+        )
+    </div>
+
+    <div class="form-group">
+        <label>Trainer</label>
+        @Html.DropDownListFor(m => m.TrainerId,
+       new SelectList(Model.Trainers, "TrainerId", "Name"),
+       new { @class = "form-control" }
+       )
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
+}
