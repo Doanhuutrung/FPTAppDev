@@ -21,7 +21,7 @@
                 @Html.ActionLink("FLS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav">
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole(Role.Admin))
@@ -46,11 +46,13 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        <div style="bottom:0;position: fixed; width:100%;">
+            <hr style="width:100%;" />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - FPT Learning System By HoangLoc & HuuTrung</p>
+            </footer>
+        </div>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

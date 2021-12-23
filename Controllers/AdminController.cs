@@ -201,7 +201,7 @@ namespace FPTAppDev.Controllers
                 };
                 if (result.Succeeded)
                 {
-                    await UserManager.AddToRoleAsync(user.Id, Role.Staff);
+                    await UserManager.AddToRoleAsync(user.Id, Role.Trainer);
                     _context.TrainerDbset.Add(newTrainer);
                     _context.SaveChanges();
                     return RedirectToAction("TrainerList", "Admin");
