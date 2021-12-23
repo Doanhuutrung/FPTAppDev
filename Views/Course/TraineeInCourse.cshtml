@@ -1,0 +1,40 @@
+﻿@model IEnumerable<FPTAppDev.ViewModel.TraineeCourseViewModel>
+@{
+    ViewBag.Title = "TraineeInCourse";
+}
+
+<h2>Trainee In Course</h2>
+
+<div class="form-group">
+    @Html.ActionLink("Assign Trainee", "AssignTrainee", "Course", new { @class = "btn btn-success" })
+    @Html.ActionLink("Remove Trainee", "RemoveTrainee", "Course", new { @class = "btn btn-danger" })
+</div>
+
+@using (Html.BeginForm("TraineeInCourse", "Course", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by course name" })
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Course</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                @foreach (var trainee in item.Trainees)
+                {
+                    <td>@trainee.Name</td>
+                }
+                <td>@item.Course.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -141,7 +141,7 @@ namespace FPTAppDev.Controllers
                     Course = res.Key,
                     Trainers = res.Select(u => u.Trainer).ToList()
                 })
-                .ToList();
+                .ToList();// get all data and show as a list form
             if (!string.IsNullOrEmpty(searchString))
             {
                 viewModel = viewModel
@@ -216,6 +216,97 @@ namespace FPTAppDev.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("TrainerInCourse", "Course");
+        }
+        
+
+
+
+        //GET: TraineeIncourse
+        [HttpGet]
+        public ActionResult TraineeInCourse(string searchString)
+        {
+            List<TraineeCourseViewModel> viewModel = _context.TraineeCourseDbset
+                .GroupBy(i => i.Course)
+                .Select(res => new TraineeCourseViewModel
+                {
+                    Course = res.Key,
+                    Trainees = res.Select(u => u.Trainee).ToList()
+                })
+                .ToList();// get all data and show as a list form
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                viewModel = viewModel
+                    .Where(t => t.Course.Name.ToLower().Contains(searchString.ToLower())).
+                    ToList();
+            }
+            return View(viewModel);
+        }
+
+        //GET: AssignTrainee
+        [HttpGet]
+        public ActionResult AssignTrainee()
+        {
+            var viewModel = new TraineeCourseViewModel
+            {
+                Courses = _context.CourseDbset.ToList(),
+                Trainees = _context.TraineeDbset.ToList()
+            };
+            return View(viewModel);
+        }
+        //POST: AssignTrainee
+        [HttpPost]
+        public ActionResult AssignTrainee(TraineeCourseViewModel viewModel)
+        {
+            var model = new TraineeCourse
+            {
+                CourseId = viewModel.CourseId,
+                TraineeId = viewModel.TraineeId
+            };
+
+            List<TraineeCourse> TraineeCourse = _context.TraineeCourseDbset.ToList();
+            bool alreadyExist = TraineeCourse.Any(i => i.CourseId == model.CourseId && i.TraineeId == model.TraineeId);
+            if (alreadyExist == true)
+            {
+                return RedirectToAction("TraineeInCourse", "Course");
+            }
+            _context.TraineeCourseDbset.Add(model);
+            _context.SaveChanges();
+            return RedirectToAction("TraineeInCourse", "Course");
+        }
+
+        //GET: RemoveTrainee
+        [HttpGet]
+        public ActionResult RemoveTrainee()
+        {
+            var Trainees = _context.TraineeCourseDbset.Select(t => t.Trainee)
+                .Distinct()
+                .ToList();
+            var courses = _context.TraineeCourseDbset.Select(t => t.Course)
+                .Distinct()
+                .ToList();
+
+            var viewModel = new TraineeCourseViewModel
+            {
+                Courses = courses,
+                Trainees = Trainees
+            };
+            return View(viewModel);
+        }
+        //POST: RemoveTrainee
+        [HttpPost]
+        public ActionResult RemoveTrainee(TraineeCourseViewModel viewModel)
+        {
+            var Trainee = _context.TraineeCourseDbset
+                .SingleOrDefault(t => t.CourseId == viewModel.CourseId && t.TraineeId == viewModel.TraineeId);
+            if (Trainee == null)
+            {
+                return RedirectToAction("TraineeInCourse", "Course");
+            }
+
+            _context.TraineeCourseDbset.Remove(Trainee);
+            _context.SaveChanges();
+
+            return RedirectToAction("TraineeInCourse", "Course");
         }
     }
 }
