@@ -13,7 +13,6 @@ namespace FPTAppDev.Models
         public int Id { get; set; }
         [Required]
         [StringLength(255)]
-        [Index("UniqueName", 1, IsUnique = true)]
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }

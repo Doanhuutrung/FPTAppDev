@@ -343,6 +343,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\Role.cs" />
     <Compile Include="ViewModel\ChangePassViewModel.cs" />
+    <Compile Include="ViewModel\CreateCourseViewModel.cs" />
     <Compile Include="ViewModel\CreateStaffViewModel.cs" />
     <Compile Include="ViewModel\CreateTraineeViewModel.cs" />
     <Compile Include="ViewModel\CreateTrainerViewModel.cs" />
@@ -418,6 +419,8 @@
     <Content Include="Views\Staff\CreateCategory.cshtml" />
     <Content Include="Views\Staff\EditCategory.cshtml" />
     <Content Include="Views\Course\CourseList.cshtml" />
+    <Content Include="Views\Course\CreateCourse.cshtml" />
+    <Content Include="Views\Course\EditCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

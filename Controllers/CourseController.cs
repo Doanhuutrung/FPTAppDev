@@ -6,6 +6,7 @@ using System.Linq;
 using System.Data.Entity;
 using System.Web;
 using System.Web.Mvc;
+using FPTAppDev.ViewModel;
 
 namespace FPTAppDev.Controllers
 {
@@ -53,5 +54,80 @@ namespace FPTAppDev.Controllers
             return View(Course);
         }
 
+        //GET: CreateCourse
+        [HttpGet]
+        public ActionResult CreateCourse()
+        {
+            var category = _context.CategoryDbset.ToList();
+            var viewModel = new CreateCourseViewModel()
+            {
+                Category = category,
+            };
+            return View(viewModel);
+        }
+        //POST: CreateCourse
+        [HttpPost]
+        public ActionResult CreateCourse(CreateCourseViewModel model)
+        {
+            var newCourse = new Course()
+            {
+                Name = model.Course.Name,
+                Description = model.Course.Description,
+                CategoryId = model.Course.CategoryId,
+            };
+            _context.CourseDbset.Add(newCourse);
+            _context.SaveChanges();
+            return RedirectToAction("CourseList", "Course");
+        }
+
+        //GET: DeleteCourse
+        [HttpGet]
+        public ActionResult DeleteCourse(int id)
+        {
+            var CourseInDb = _context.CourseDbset.SingleOrDefault(t => t.Id == id);
+            if (CourseInDb == null)
+            {
+                return HttpNotFound();
+            }
+            _context.CourseDbset.Remove(CourseInDb);
+            _context.SaveChanges();
+            //Reseed the identity to 0.
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT (Courses, RESEED, 0)");
+            //Roll the identity forward till it finds the last used number.
+            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT (Courses, RESEED)");
+            return RedirectToAction("CourseList", "Course");
+        }
+
+        //GET: EditCourse
+        [HttpGet]
+        public ActionResult EditCourse(int id)
+        {
+            var CourseInDb = _context.CourseDbset.SingleOrDefault(t => t.Id == id);
+            if (CourseInDb == null)
+            {
+                return HttpNotFound();
+            }
+            var viewModel = new CreateCourseViewModel
+            {
+                Course = CourseInDb,
+                Category = _context.CategoryDbset.ToList()
+            };
+            return View(viewModel);
+        }
+        //POST: EditCourse
+        [HttpPost]
+        public ActionResult EditCourse(CreateCourseViewModel model)
+        {
+            var CourseInDb = _context.CourseDbset.SingleOrDefault(t => t.Id == model.Course.Id);
+            if (CourseInDb == null)
+            {
+                return HttpNotFound();
+            }
+            CourseInDb.Name = model.Course.Name;
+            CourseInDb.Description = model.Course.Description;
+            CourseInDb.CategoryId = model.Course.CategoryId;
+            _context.SaveChanges();
+            return RedirectToAction("CourseList", "Course");
+        }
     }
 }
