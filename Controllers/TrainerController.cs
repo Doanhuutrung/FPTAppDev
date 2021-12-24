@@ -55,4 +55,20 @@ namespace FPTAppDev.Controllers
             _context.SaveChanges();
             return RedirectToAction("TrainerInfo", "Trainer");
         }
-    }
+        //GET: TrainerCourse
+        [HttpGet]
+        public ActionResult TrainerCourse()
+        {
+            var trainerId = User.Identity.GetUserId();
+            var trainer = _context.TrainerDbset.ToList();
+            var course = _context.CourseDbset
+                .Include(t => t.Category)
+                .ToList();
+            var courses = _context.TrainerCourseDbset
+                .Where(t => t.Trainer.TrainerId == trainerId)
+                .Select(t => t.Course)
+                .ToList();
+            return View(courses);
+
+        }
+
