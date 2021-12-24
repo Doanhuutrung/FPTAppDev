@@ -442,6 +442,7 @@
     <Content Include="Views\Course\AssignTrainee.cshtml" />
     <Content Include="Views\Course\RemoveTrainee.cshtml" />
     <Content Include="Views\Trainer\Edit.cshtml" />
+    <Content Include="Views\Trainer\TrainerCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
