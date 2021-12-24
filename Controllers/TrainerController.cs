@@ -26,3 +26,33 @@ namespace FPTAppDev.Controllers
                 .SingleOrDefault(t => t.TrainerId == userId);
             return View(trainerInDb);
         }
+        //GET: Edit
+        [HttpGet]
+        public ActionResult Edit(string id)
+        {
+            var trainerInDb = _context.TrainerDbset
+                .SingleOrDefault(t => t.TrainerId == id);
+            if (trainerInDb == null)
+            {
+                return HttpNotFound();
+            }
+            return View(trainerInDb);
+        }
+        //POST: Edit
+        [HttpPost]
+        public ActionResult Edit(Trainer trainer)
+        {
+            var trainerInDb = _context.TrainerDbset.SingleOrDefault(t => t.TrainerId == trainer.TrainerId);
+            if (trainerInDb == null)
+            {
+                return HttpNotFound();
+            }
+            trainerInDb.Name = trainer.Name;
+            trainerInDb.Age = trainer.Age;
+            trainerInDb.Address = trainer.Address;
+            trainerInDb.Specialty = trainer.Specialty;
+
+            _context.SaveChanges();
+            return RedirectToAction("TrainerInfo", "Trainer");
+        }
+    }
