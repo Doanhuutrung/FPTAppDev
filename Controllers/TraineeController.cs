@@ -39,5 +39,16 @@ namespace FPTAppDev.Controllers
                 .ToList();
             return View(courses);
         }
+        //GET: ViewTrainee
+        [HttpGet]
+        public ActionResult ViewTrainee(int id)
+        {
+            var user = _context.Users.ToList();
+            var traineesCourse = _context.TraineeCourseDbset
+                .Where(t => t.CourseId == id)
+                .Select(t => t.Trainee)
+                .ToList();
+            return View(traineesCourse);
+        }
     }
 }
