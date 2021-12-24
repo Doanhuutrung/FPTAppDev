@@ -13,6 +13,12 @@
         {
             <div class="col-md-4">
                 <h2>Trainee</h2>
+                <p>
+                    @Html.ActionLink("View Information", "TraineeInfo", "Trainee", null, new { @class = "btn btn-success" })
+                </p>
+                <p>
+                    @Html.ActionLink("View Course", "TraineeCourse", "Trainee", null, new { @class = "btn btn-primary" })
+                </p>
             </div>
         }
 
@@ -20,6 +26,12 @@
         {
             <div class="col-md-4">
                 <h2>Trainer</h2>
+                <p>
+                    @Html.ActionLink("View Information", "TrainerInfo", "Trainer", null, new { @class = "btn btn-success" })
+                </p>
+                <p>
+                    @Html.ActionLink("View Course", "TrainerCourse", "Trainer", null, new { @class = "btn btn-primary" })
+                </p>
             </div>
         }
 
