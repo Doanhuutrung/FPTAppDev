@@ -19,5 +19,13 @@ namespace FPTAppDev.Controllers
         {
             return View();
         }
+        // TraineeInfo
+        public ActionResult TraineeInfo()
+        {
+            var userId = User.Identity.GetUserId();
+            var traineeInDb = _context.TraineeDbset
+                .SingleOrDefault(t => t.TraineeId == userId);
+            return View(traineeInDb);
+        }
     }
 }
