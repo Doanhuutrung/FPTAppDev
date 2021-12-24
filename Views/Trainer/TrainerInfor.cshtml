@@ -1,0 +1,24 @@
+﻿@model IEnumerable<FPTAppDev.Models.Trainee>
+@{
+    ViewBag.Title = "ViewTrainee";
+}
+
+<h2>Trainee List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.User.Email</td>
+            </tr>
+        }
+    </tbody>
+</table>
