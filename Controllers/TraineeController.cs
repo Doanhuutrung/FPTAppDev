@@ -27,5 +27,17 @@ namespace FPTAppDev.Controllers
                 .SingleOrDefault(t => t.TraineeId == userId);
             return View(traineeInDb);
         }
+        //GET: TraineeCourse
+        [HttpGet]
+        public ActionResult TraineeCourse()
+        {
+            var userId = User.Identity.GetUserId();
+            var catagory = _context.CategoryDbset.ToList();
+            var courses = _context.TraineeCourseDbset
+                .Where(t => t.Trainee.TraineeId == userId)
+                .Select(t => t.Course)
+                .ToList();
+            return View(courses);
+        }
     }
 }
