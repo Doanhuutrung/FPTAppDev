@@ -302,6 +302,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StaffController.cs" />
+    <Compile Include="Controllers\TrainerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -337,7 +338,6 @@
     <Compile Include="Migrations\202112231002300_CreateTableTraineeCourses.Designer.cs">
       <DependentUpon>202112231002300_CreateTableTraineeCourses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -442,6 +442,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Trainer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
