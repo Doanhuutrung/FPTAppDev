@@ -284,7 +284,7 @@ namespace FPTAppDev.Controllers
                 userManager.AddPassword(userId, newPassword);
             }
             _context.SaveChanges();
-            return RedirectToAction("StaffList", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
+            return RedirectToAction("TrainerList", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
 
     }
