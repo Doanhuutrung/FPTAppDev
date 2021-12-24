@@ -91,10 +91,6 @@ namespace FPTAppDev.Controllers
             }
             _context.CourseDbset.Remove(CourseInDb);
             _context.SaveChanges();
-            //Reseed the identity to 0.
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT (Courses, RESEED, 0)");
-            //Roll the identity forward till it finds the last used number.
-            _context.Database.ExecuteSqlCommand("DBCC CHECKIDENT (Courses, RESEED)");
             return RedirectToAction("CourseList", "Course");
         }
 
