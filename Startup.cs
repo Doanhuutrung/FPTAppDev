@@ -2,6 +2,7 @@
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(FPTAppDev.Startup))]
+
 namespace FPTAppDev
 {
     public partial class Startup

@@ -4,8 +4,6 @@ using FPTAppDev.ViewModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,15 +18,18 @@ namespace FPTAppDev.Controllers
     {
         private ApplicationDbContext _context;
         private ApplicationUserManager _userManager;
+
         public AdminController()
         {
             _context = new ApplicationDbContext();
         }
+
         public AdminController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
             _context = new ApplicationDbContext();
         }
+
         public ApplicationUserManager UserManager
         {
             get
@@ -40,23 +41,27 @@ namespace FPTAppDev.Controllers
                 _userManager = value;
             }
         }
+
         // GET: Admin
         public ActionResult Index()
         {
             return View();
         }
+
         //Staff List
         public ActionResult StaffList()
         {
             var Staff = _context.StaffDbset.Include(t => t.User).ToList();
             return View(Staff);
         }
+
         //GET: CreateStaff
         [HttpGet]
         public ActionResult CreateStaff()
         {
             return View();
         }
+
         //POST: CreateStaff
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -86,6 +91,7 @@ namespace FPTAppDev.Controllers
 
             return View(viewModel);
         }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -121,6 +127,7 @@ namespace FPTAppDev.Controllers
             }
             return View(staffInDb);
         }
+
         //POST: EditStaff
         [HttpPost]
         public ActionResult EditStaff(Staff staff)
@@ -144,6 +151,7 @@ namespace FPTAppDev.Controllers
         {
             return View();
         }
+
         //POST: StaffChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -181,6 +189,7 @@ namespace FPTAppDev.Controllers
         {
             return View();
         }
+
         //POST: CreateTrainer
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -239,6 +248,7 @@ namespace FPTAppDev.Controllers
             }
             return View(trainerInDb);
         }
+
         //POST: EditTrainer
         [HttpPost]
         public ActionResult EditTrainer(Trainer trainer)
@@ -263,6 +273,7 @@ namespace FPTAppDev.Controllers
         {
             return View();
         }
+
         //POST: StaffChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -286,6 +297,5 @@ namespace FPTAppDev.Controllers
             _context.SaveChanges();
             return RedirectToAction("TrainerList", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
-
     }
 }

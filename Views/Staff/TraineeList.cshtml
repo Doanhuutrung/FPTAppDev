@@ -11,10 +11,10 @@
 
 @using (Html.BeginForm("TraineeList", "Staff", FormMethod.Get))
 {
-    <div class="form-group">
-        @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by trainee name or age" })
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+<div class="form-group">
+    @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by trainee name or age" })
+</div>
+<button type="submit" class="btn btn-primary">Search</button>
 }
 @Html.ValidationSummary("", new { @class = "text-danger" })
 <table class="table">
@@ -32,17 +32,19 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.User.Email</td>
-                <td>@item.Name</td>
-                <td>@item.Age</td>
-                <td>@item.BirthDate.ToShortDateString()</td>
-                <td>@item.Address</td>
-                <td>@item.Education</td>
-                <td>@Html.ActionLink("Delete", "DeleteTrainee", "Staff", new { id = @item.TraineeId },
-                    new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
-                @Html.ActionLink("Edit", "EditTrainee", "Staff", new { id = @item.TraineeId }, new { @class = "btn btn-primary" })</td>
-            </tr>
+        <tr>
+            <td>@item.User.Email</td>
+            <td>@item.Name</td>
+            <td>@item.Age</td>
+            <td>@item.BirthDate.ToShortDateString()</td>
+            <td>@item.Address</td>
+            <td>@item.Education</td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteTrainee", "Staff", new { id = @item.TraineeId },
+            new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+                @Html.ActionLink("Edit", "EditTrainee", "Staff", new { id = @item.TraineeId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
         }
     </tbody>
 </table>

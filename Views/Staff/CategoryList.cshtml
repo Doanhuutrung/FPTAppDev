@@ -11,10 +11,10 @@
 
 @using (Html.BeginForm("CategoryList", "Staff", FormMethod.Get))
 {
-    <div class="form-group">
-        @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by category name" })
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+<div class="form-group">
+    @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by category name" })
+</div>
+<button type="submit" class="btn btn-primary">Search</button>
 }
 <table class="table">
     <thead>
@@ -28,13 +28,13 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Name</td>
-                <td>@item.Description</td>
-                <td>
-                    @Html.ActionLink("Delete", "DeleteCategory", "Staff", new { id = @item.Id },
-                new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteCategory", "Staff", new { id = @item.Id },
+            new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
                 @Html.ActionLink("Edit", "EditCategory", "Staff", new { id = @item.Id }, new { @class = "btn btn-primary" })
             </td>
         </tr>

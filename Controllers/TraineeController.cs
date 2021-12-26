@@ -1,7 +1,5 @@
-﻿using FPTAppDev;
-using FPTAppDev.Models;
+﻿using FPTAppDev.Models;
 using Microsoft.AspNet.Identity;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -10,15 +8,18 @@ namespace FPTAppDev.Controllers
     public class TraineeController : Controller
     {
         private ApplicationDbContext _context;
+
         public TraineeController()
         {
             _context = new ApplicationDbContext();
         }
+
         // GET: Trainee
         public ActionResult Index()
         {
             return View();
         }
+
         // TraineeInfo
         public ActionResult TraineeInfo()
         {
@@ -27,6 +28,7 @@ namespace FPTAppDev.Controllers
                 .SingleOrDefault(t => t.TraineeId == userId);
             return View(traineeInDb);
         }
+
         //GET: TraineeCourse
         [HttpGet]
         public ActionResult TraineeCourse()
@@ -39,6 +41,7 @@ namespace FPTAppDev.Controllers
                 .ToList();
             return View(courses);
         }
+
         //GET: ViewTrainee
         [HttpGet]
         public ActionResult ViewTrainee(int id)

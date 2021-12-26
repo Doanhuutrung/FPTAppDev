@@ -12,10 +12,10 @@
 
 @using (Html.BeginForm("TraineeInCourse", "Course", FormMethod.Get))
 {
-    <div class="form-group">
-        @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by course name" })
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
+<div class="form-group">
+    @Html.TextBox("searchString", null, new { @class = "form-control", placeholder = "Search by course name" })
+</div>
+<button type="submit" class="btn btn-primary">Search</button>
 }
 <table class="table">
     <thead>
@@ -27,17 +27,17 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @foreach (var trainee in item.Trainees)
+        <tr>
+            <td>
+                @foreach (var trainee in item.Trainees)
                     {
-                        <li>
-                            @trainee.Name
-                        </li>
+                <li>
+                    @trainee.Name
+                </li>
                     }
-                </td>
-                <td>@item.Course.Name</td>
-            </tr>
+            </td>
+            <td>@item.Course.Name</td>
+        </tr>
         }
     </tbody>
 </table>

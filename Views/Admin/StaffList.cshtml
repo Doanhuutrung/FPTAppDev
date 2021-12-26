@@ -23,19 +23,18 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.User.Email</td>
-                <td>@item.Name</td>
-                <td>@item.Age</td>
-                <td>@item.Address</td>
-                <td>
-                    @Html.ActionLink("Delete", "DeleteStaff", "Admin", new { id = @item.StaffId },
-                        new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
-                    @Html.ActionLink("Edit", "EditStaff", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Change Password", "StaffChangePassword", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-primary" })
-                </td>
-            </tr>
+        <tr>
+            <td>@item.User.Email</td>
+            <td>@item.Name</td>
+            <td>@item.Age</td>
+            <td>@item.Address</td>
+            <td>
+                @Html.ActionLink("Delete", "DeleteStaff", "Admin", new { id = @item.StaffId },
+                    new { @class = "btn btn-danger", onClick = "return confirm ('Are you sure ?')" })
+                @Html.ActionLink("Edit", "EditStaff", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Change Password", "StaffChangePassword", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
         }
-
     </tbody>
 </table>

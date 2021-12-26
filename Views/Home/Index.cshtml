@@ -11,68 +11,66 @@
     {
         if (User.IsInRole(FPTAppDev.Utils.Role.Trainee))
         {
-            <div class="col-md-4">
-                <h2>Trainee</h2>
-                <p>
-                    @Html.ActionLink("View Information", "TraineeInfo", "Trainee", null, new { @class = "btn btn-success" })
-                </p>
-                <p>
-                    @Html.ActionLink("View Course", "TraineeCourse", "Trainee", null, new { @class = "btn btn-primary" })
-                </p>
-            </div>
+    <div class="col-md-4">
+        <h2>Trainee</h2>
+        <p>
+            @Html.ActionLink("View Information", "TraineeInfo", "Trainee", null, new { @class = "btn btn-success" })
+        </p>
+        <p>
+            @Html.ActionLink("View Course", "TraineeCourse", "Trainee", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
         }
 
         if (User.IsInRole(FPTAppDev.Utils.Role.Trainer))
         {
-            <div class="col-md-4">
-                <h2>Trainer</h2>
-                <p>
-                    @Html.ActionLink("View Information", "TrainerInfo", "Trainer", null, new { @class = "btn btn-success" })
-                </p>
-                <p>
-                    @Html.ActionLink("View Course", "TrainerCourse", "Trainer", null, new { @class = "btn btn-primary" })
-                </p>
-            </div>
+    <div class="col-md-4">
+        <h2>Trainer</h2>
+        <p>
+            @Html.ActionLink("View Information", "TrainerInfo", "Trainer", null, new { @class = "btn btn-success" })
+        </p>
+        <p>
+            @Html.ActionLink("View Course", "TrainerCourse", "Trainer", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
         }
 
         if (User.IsInRole(FPTAppDev.Utils.Role.Staff))
         {
-            <div class="col-md-4">
-                <h2>View Trainee</h2>
-                <p>
-                    @Html.ActionLink("View", "TraineeList", "Staff", null, new { @class = "btn btn-primary" })
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h2>View Category</h2>
-                <p>
-                    @Html.ActionLink("View", "CategoryList", "Staff", null, new { @class = "btn btn-primary" })
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h2>View Course</h2>
-                <p>
-                    @Html.ActionLink("View", "CourseList", "Course", null, new { @class = "btn btn-primary" })
-                </p>
-            </div>
+    <div class="col-md-4">
+        <h2>View Trainee</h2>
+        <p>
+            @Html.ActionLink("View", "TraineeList", "Staff", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>View Category</h2>
+        <p>
+            @Html.ActionLink("View", "CategoryList", "Staff", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>View Course</h2>
+        <p>
+            @Html.ActionLink("View", "CourseList", "Course", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
         }
 
         if (User.IsInRole(FPTAppDev.Utils.Role.Admin))
         {
-            <div class="col-md-4">
-                <h2>View Training Staff</h2>
-                <p>
-                    @Html.ActionLink("View", "StaffList", "Admin", null, new { @class = "btn btn-primary" })
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h2>View Trainer</h2>
-                <p>
-                    @Html.ActionLink("View", "TrainerList", "Admin", null, new { @class = "btn btn-primary" })
-                </p>
-            </div>
+    <div class="col-md-4">
+        <h2>View Training Staff</h2>
+        <p>
+            @Html.ActionLink("View", "StaffList", "Admin", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>View Trainer</h2>
+        <p>
+            @Html.ActionLink("View", "TrainerList", "Admin", null, new { @class = "btn btn-primary" })
+        </p>
+    </div>
         }
     }
-
-
 </div>

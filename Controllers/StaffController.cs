@@ -1,15 +1,14 @@
 ﻿using FPTAppDev.Models;
 using FPTAppDev.Utils;
-using Microsoft.AspNet.Identity.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Data.Entity;
-using System.Web;
-using System.Web.Mvc;
-using System.Threading.Tasks;
 using FPTAppDev.ViewModel;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace FPTAppDev.Controllers
 {
@@ -18,15 +17,18 @@ namespace FPTAppDev.Controllers
     {
         private ApplicationDbContext _context;
         private ApplicationUserManager _userManager;
+
         public StaffController()
         {
             _context = new ApplicationDbContext();
         }
+
         public StaffController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
             _context = new ApplicationDbContext();
         }
+
         public ApplicationUserManager UserManager
         {
             get
@@ -38,6 +40,7 @@ namespace FPTAppDev.Controllers
                 _userManager = value;
             }
         }
+
         // GET: Staff
         public ActionResult Index()
         {
@@ -50,7 +53,7 @@ namespace FPTAppDev.Controllers
             var Trainee = _context.TraineeDbset.Include(t => t.User).ToList();
             if (!string.IsNullOrEmpty(searchString))
             {
-                Trainee = Trainee.Where(t => t.Name.ToLower().Contains(searchString.ToLower()) 
+                Trainee = Trainee.Where(t => t.Name.ToLower().Contains(searchString.ToLower())
                 || t.Age.ToString().Contains(searchString.ToLower()))
                 .ToList();
             }
@@ -63,6 +66,7 @@ namespace FPTAppDev.Controllers
         {
             return View();
         }
+
         //POST: CreateTrainee
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -94,6 +98,7 @@ namespace FPTAppDev.Controllers
 
             return View(viewModel);
         }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -132,6 +137,7 @@ namespace FPTAppDev.Controllers
             }
             return View(traineeInDb);
         }
+
         //POST: EditTrainee
         [HttpPost]
         public ActionResult EditTrainee(Trainee trainee)
@@ -149,7 +155,7 @@ namespace FPTAppDev.Controllers
             _context.SaveChanges();
             return RedirectToAction("TraineeList", "Staff");
         }
-        
+
         //CategoryList
         public ActionResult CategoryList(string searchString)
         {
@@ -171,6 +177,7 @@ namespace FPTAppDev.Controllers
         {
             return View();
         }
+
         //POST: CreateCategory
         [HttpPost]
         public ActionResult CreateCategory(Category category)
@@ -190,7 +197,7 @@ namespace FPTAppDev.Controllers
                 ModelState.AddModelError("duplicate", "Category name already existed");
                 return View(category);
             }
-            
+
             return RedirectToAction("CategoryList", "Staff");
         }
 
@@ -219,6 +226,7 @@ namespace FPTAppDev.Controllers
             }
             return View(categoryInDb);
         }
+
         //POST: EditCategory
         [HttpPost]
         public ActionResult EditCategory(Category category)

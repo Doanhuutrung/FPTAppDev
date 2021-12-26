@@ -1,12 +1,11 @@
 ﻿using FPTAppDev.Models;
+using FPTAppDev.ViewModel;
 using Microsoft.AspNet.Identity.Owin;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Data.Entity;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using FPTAppDev.ViewModel;
 
 namespace FPTAppDev.Controllers
 {
@@ -14,15 +13,18 @@ namespace FPTAppDev.Controllers
     {
         private ApplicationDbContext _context;
         private ApplicationUserManager _userManager;
+
         public CourseController()
         {
             _context = new ApplicationDbContext();
         }
+
         public CourseController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
             _context = new ApplicationDbContext();
         }
+
         public ApplicationUserManager UserManager
         {
             get
@@ -34,11 +36,13 @@ namespace FPTAppDev.Controllers
                 _userManager = value;
             }
         }
+
         // GET: Course
         public ActionResult Index()
         {
             return View();
         }
+
         //CourseList
         public ActionResult CourseList(string searchString)
         {
@@ -65,6 +69,7 @@ namespace FPTAppDev.Controllers
             };
             return View(viewModel);
         }
+
         //POST: CreateCourse
         [HttpPost]
         public ActionResult CreateCourse(CreateCourseViewModel model)
@@ -110,6 +115,7 @@ namespace FPTAppDev.Controllers
             };
             return View(viewModel);
         }
+
         //POST: EditCourse
         [HttpPost]
         public ActionResult EditCourse(CreateCourseViewModel model)
@@ -158,6 +164,7 @@ namespace FPTAppDev.Controllers
             };
             return View(viewModel);
         }
+
         //POST: AssignTrainer
         [HttpPost]
         public ActionResult AssignTrainer(TrainerCourseViewModel viewModel)
@@ -197,6 +204,7 @@ namespace FPTAppDev.Controllers
             };
             return View(viewModel);
         }
+
         //POST: RemoveTrainer
         [HttpPost]
         public ActionResult RemoveTrainer(TrainerCourseViewModel viewModel)
@@ -213,9 +221,6 @@ namespace FPTAppDev.Controllers
 
             return RedirectToAction("TrainerInCourse", "Course");
         }
-        
-
-
 
         //GET: TraineeIncourse
         [HttpGet]
@@ -249,6 +254,7 @@ namespace FPTAppDev.Controllers
             };
             return View(viewModel);
         }
+
         //POST: AssignTrainee
         [HttpPost]
         public ActionResult AssignTrainee(TraineeCourseViewModel viewModel)
@@ -288,6 +294,7 @@ namespace FPTAppDev.Controllers
             };
             return View(viewModel);
         }
+
         //POST: RemoveTrainee
         [HttpPost]
         public ActionResult RemoveTrainee(TraineeCourseViewModel viewModel)
