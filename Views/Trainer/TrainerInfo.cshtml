@@ -1,0 +1,19 @@
+﻿@model FPTAppDev.Models.Trainer
+@{
+    ViewBag.Title = "TrainerInfo";
+}
+
+<h2>Your Information</h2>
+
+@Html.ActionLink("Edit", "Edit", "Trainer", new { id = @Model.TrainerId }, new { @class = "btn btn-success" })
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @Model.Name
+    </div>
+    <div class="panel-body">
+        <p>Age: @Model.Age</p>
+        <p>Specialty: @Model.Specialty</p>
+        <p>Address: @Model.Address</p>
+    </div>
+</div>
