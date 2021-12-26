@@ -444,7 +444,7 @@
     <Content Include="Views\Course\RemoveTrainee.cshtml" />
     <Content Include="Views\Trainer\Edit.cshtml" />
     <Content Include="Views\Trainer\TrainerCourse.cshtml" />
-    <Content Include="Views\Trainer\TrainerInfor.cshtml" />
+    <Content Include="Views\Trainer\TrainerInfo.cshtml" />
     <Content Include="Views\Trainer\ViewTrainee.cshtml" />
     <Content Include="Views\Trainee\TraineeInfo.cshtml" />
     <Content Include="Views\Trainee\TraineeCourse.cshtml" />

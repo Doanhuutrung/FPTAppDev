@@ -9,6 +9,7 @@ namespace FPTAppDev.Controllers
     public class TrainerController : Controller
     {
         private ApplicationDbContext _context;
+
         public TrainerController()
         {
             _context = new ApplicationDbContext();
@@ -19,6 +20,7 @@ namespace FPTAppDev.Controllers
         {
             return View();
         }
+
         public ActionResult TrainerInfo()
         {
             var userId = User.Identity.GetUserId();
@@ -26,6 +28,7 @@ namespace FPTAppDev.Controllers
                 .SingleOrDefault(t => t.TrainerId == userId);
             return View(trainerInDb);
         }
+
         //GET: Edit
         [HttpGet]
         public ActionResult Edit(string id)
@@ -38,6 +41,7 @@ namespace FPTAppDev.Controllers
             }
             return View(trainerInDb);
         }
+
         //POST: Edit
         [HttpPost]
         public ActionResult Edit(Trainer trainer)
@@ -55,6 +59,7 @@ namespace FPTAppDev.Controllers
             _context.SaveChanges();
             return RedirectToAction("TrainerInfo", "Trainer");
         }
+
         //GET: TrainerCourse
         [HttpGet]
         public ActionResult TrainerCourse()
@@ -70,6 +75,7 @@ namespace FPTAppDev.Controllers
                 .ToList();
             return View(courses);
         }
+
         //GET: ViewTrainee
         [HttpGet]
         public ActionResult ViewTrainee(int id)
@@ -80,8 +86,6 @@ namespace FPTAppDev.Controllers
                 .Select(t => t.Trainee)
                 .ToList();
             return View(traineesCourse);
-
         }
     }
 }
-
